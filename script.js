@@ -11,10 +11,8 @@ const GAP_MS  = 120;    // минимальная пауза между фраз
 // Адаптация скорости печати под устройство/настройки
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const deviceMem = navigator.deviceMemory || 4; // грубая эвристика
-// задержка между «порциями» символов
-const TYPE_DELAY = prefersReduced ? 0 : (deviceMem <= 2 ? 4 : 2);
-// сколько символов печатать за «порцию»
-const STEP = prefersReduced ? 9999 : (deviceMem <= 2 ? 4 : 3);
+const TYPE_DELAY = 1;  // задержка 1 мс между порциями
+const STEP = 6;        // сразу печатаем по 6 символов
 
 // Цветной HTML-код (размеченный span’ами для подсветки) + меню
 const COLORED_HTML = [
