@@ -1,158 +1,128 @@
-// ====== ПАРАМЕТРЫ ======
-const PHRASES = [
-  "Вижу идею.",
-  "Делаю дизайн.",
-  "Пишу текст.",
-  "Собираю код."
-];
-const HOLD_MS = 1100;   // 1–1.5 сек на фразу
-const GAP_MS  = 120;    // минимальная пауза между фразами
+// Бургер меню
+const burger = document.querySelector('.burger');
+const nav = document.querySelector('.nav');
 
-// Адаптация скорости печати под устройство/настройки
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const deviceMem = navigator.deviceMemory || 4; // грубая эвристика
-const TYPE_DELAY = 1;  // задержка 1 мс между порциями
-const STEP = 6;        // сразу печатаем по 6 символов
-
-// Цветной HTML-код (размеченный span’ами для подсветки) + меню
-const COLORED_HTML = [
-  `<span class="t-comm">&lt;!-- txf. — One-man studio: menu --&gt;</span>`,
-  `<span class="t-angle">&lt;</span><span class="t-tag">!DOCTYPE</span> <span class="t-attr">html</span><span class="t-angle">&gt;</span>`,
-  `<span class="t-angle">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span><span class="t-punc">=</span><span class="t-str">"ru"</span><span class="t-angle">&gt;</span>`,
-  `  <span class="t-angle">&lt;</span><span class="t-tag">head</span><span class="t-angle">&gt;</span>`,
-  `    <span class="t-angle">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span><span class="t-punc">=</span><span class="t-str">"utf-8"</span><span class="t-angle">&gt;</span>`,
-  `    <span class="t-angle">&lt;</span><span class="t-tag">title</span><span class="t-angle">&gt;</span>txf. — One-man studio<span class="t-angle">&lt;/</span><span class="t-tag">title</span><span class="t-angle">&gt;</span>`,
-  `  <span class="t-angle">&lt;/</span><span class="t-tag">head</span><span class="t-angle">&gt;</span>`,
-  `  <span class="t-angle">&lt;</span><span class="t-tag">body</span><span class="t-angle">&gt;</span>`,
-  `    <span class="t-angle">&lt;</span><span class="t-tag">header</span> <span class="t-attr">class</span><span class="t-punc">=</span><span class="t-str">"hero"</span><span class="t-angle">&gt;</span>`,
-  `      <span class="t-angle">&lt;</span><span class="t-tag">nav</span><span class="t-angle">&gt;</span>`,
-  `        <span class="t-angle">&lt;</span><span class="t-tag">ul</span><span class="t-angle">&gt;</span>`,
-  `          <span class="t-angle">&lt;</span><span class="t-tag">li</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span><span class="t-punc">=</span><span class="t-str code-link" data-target="#about" role="link" tabindex="0">"#Познакомиться ближе"</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">a</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">li</span><span class="t-angle">&gt;</span>`,
-  `          <span class="t-angle">&lt;</span><span class="t-tag">li</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span><span class="t-punc">=</span><span class="t-str code-link" data-target="#work" role="link" tabindex="0">"#Работы"</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">a</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">li</span><span class="t-angle">&gt;</span>`,
-  `          <span class="t-angle">&lt;</span><span class="t-tag">li</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span><span class="t-punc">=</span><span class="t-str code-link" data-target="#services" role="link" tabindex="0">"#Услуги"</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">a</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">li</span><span class="t-angle">&gt;</span>`,
-  `          <span class="t-angle">&lt;</span><span class="t-tag">li</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span><span class="t-punc">=</span><span class="t-str code-link" data-target="#contacts" role="link" tabindex="0">"#Контакты"</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">a</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">li</span><span class="t-angle">&gt;</span>`,
-  `        <span class="t-angle">&lt;/</span><span class="t-tag">ul</span><span class="t-angle">&gt;</span>`,
-  `      <span class="t-angle">&lt;/</span><span class="t-tag">nav</span><span class="t-angle">&gt;</span>`,
-  `      <span class="t-angle">&lt;</span><span class="t-tag">h1</span><span class="t-angle">&gt;</span><span class="t-comm">&lt;!-- focus on the brand --&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">h1</span><span class="t-angle">&gt;</span>`,
-  `    <span class="t-angle">&lt;/</span><span class="t-tag">header</span><span class="t-angle">&gt;</span>`,
-  `    <span class="t-angle">&lt;</span><span class="t-tag">main</span><span class="t-angle">&gt;</span>`,
-  `      <span class="t-comm">&lt;!-- контент собирается ниже, см. секции страницы --&gt;</span>`,
-  `      <span class="t-angle">&lt;</span><span class="t-tag">section</span> <span class="t-attr">id</span><span class="t-punc">=</span><span class="t-str">"about"</span><span class="t-angle">&gt;</span><span class="t-comm">&lt;!-- … --&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">section</span><span class="t-angle">&gt;</span>`,
-  `      <span class="t-angle">&lt;</span><span class="t-tag">section</span> <span class="t-attr">id</span><span class="t-punc">=</span><span class="t-str">"work"</span><span class="t-angle">&gt;</span><span class="t-comm">&lt;!-- … --&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">section</span><span class="t-angle">&gt;</span>`,
-  `      <span class="t-angle">&lt;</span><span class="t-tag">section</span> <span class="t-attr">id</span><span class="t-punc">=</span><span class="t-str">"services"</span><span class="t-angle">&gt;</span><span class="t-comm">&lt;!-- … --&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">section</span><span class="t-angle">&gt;</span>`,
-  `      <span class="t-angle">&lt;</span><span class="t-tag">section</span> <span class="t-attr">id</span><span class="t-punc">=</span><span class="t-str">"contacts"</span><span class="t-angle">&gt;</span><span class="t-comm">&lt;!-- … --&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">section</span><span class="t-angle">&gt;</span>`,
-  `    <span class="t-angle">&lt;/</span><span class="t-tag">main</span><span class="t-angle">&gt;</span>`,
-  `  <span class="t-angle">&lt;/</span><span class="t-tag">body</span><span class="t-angle">&gt;</span>`,
-  `<span class="t-angle">&lt;/</span><span class="t-tag">html</span><span class="t-angle">&gt;</span>`
-].join("\n");
-
-// ====== DOM refs ======
-const phraseSlot  = document.getElementById('phraseSlot');
-const coderStage  = document.getElementById('coderStage');
-const codeStream  = document.getElementById('codeStream');
-const brandMark   = document.getElementById('brandMark');
-const scrollDown  = document.getElementById('scrollDown');
-
-// ====== Intro logic ======
-function showPhrase(text){
-  phraseSlot.classList.add('no-transition');
-  phraseSlot.textContent = ''; // мгновенно очистить
-  void phraseSlot.offsetHeight; // reflow
-  phraseSlot.textContent = text;
-  phraseSlot.classList.remove('no-transition');
-}
-async function runIntro(){
-  for (let i=0; i<PHRASES.length; i++){
-    showPhrase(PHRASES[i]);
-    await sleep(HOLD_MS);
-    phraseSlot.classList.add('no-transition');
-    phraseSlot.textContent = '';
-    phraseSlot.classList.remove('no-transition');
-    await sleep(GAP_MS);
-  }
-  switchToCoder();
-}
-function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
-
-// ====== Coder stage ======
-function switchToCoder(){
-  document.querySelector('.intro').style.display = 'none';
-  coderStage.classList.remove('hidden');
-  coderStage.setAttribute('aria-hidden','false');
-
-  // бренд появляется сразу, в духе интро-фраз
-  brandMark.classList.remove('pop-flash'); // сброс на случай повторного входа
-  void brandMark.offsetHeight;             // reflow
-  brandMark.classList.add('pop-flash');
-
-  // «печатаем» код — параллельно
-  typeColored(codeStream, COLORED_HTML, TYPE_DELAY, STEP);
-
-  // показать стрелку
-  setArrowVisible(true);
-}
-
-async function typeColored(node, coloredHTML, delay, step){
-  node.innerHTML = '';
-  let i = 0;
-  const s = Math.max(1, step|0);
-  const d = Math.max(0, delay);
-  while (i < coloredHTML.length){
-    node.innerHTML = coloredHTML.slice(0, i + s);
-    i += s;
-    if (d > 0) await sleep(d);
-  }
-}
-
-// ====== Arrow & scroll ======
-function setArrowVisible(v){
-  if(!scrollDown) return;
-  scrollDown.style.opacity = v ? '1' : '0';
-  scrollDown.style.pointerEvents = v ? 'auto' : 'none';
-}
-if (scrollDown){
-  scrollDown.addEventListener('click', ()=>{
-    document.documentElement.style.scrollBehavior = 'auto'; // резко
-    // якорь сам сработает по href
-  });
-}
-
-// ====== In-code menu clicks ======
-codeStream.addEventListener('click', (e)=>{
-  const link = e.target.closest('.code-link');
-  if(!link) return;
-  const sel = link.dataset.target;
-  const el = document.querySelector(sel);
-  if(el){
-    document.documentElement.style.scrollBehavior = 'auto';
-    el.scrollIntoView(true);
-  }
+burger.addEventListener('click', () => {
+  nav.classList.toggle('is-open');
+  burger.setAttribute('aria-expanded', nav.classList.contains('is-open'));
 });
-// клавиатура (Enter/Space)
-codeStream.addEventListener('keydown', (e)=>{
-  const tgt = e.target.closest('.code-link');
-  if(!tgt) return;
-  if(e.key === 'Enter' || e.key === ' '){
+
+// Закрытие меню при клике по ссылке (мобилка)
+document.querySelectorAll('.nav a').forEach(link=>{
+  link.addEventListener('click',()=> nav.classList.remove('is-open'));
+});
+(function(){
+  const form = document.getElementById('profit-calc');
+  if(!form) return;
+
+  const els = {
+    price: form.querySelector('input[name="price"]'),
+    cups:  form.querySelector('input[name="cups"]'),
+    days:  form.querySelector('input[name="days"]'),
+    ingredients: form.querySelector('input[name="ingredients"]'),
+    rent:  form.querySelector('input[name="rent"]'),
+    acq:   form.querySelector('input[name="acq"]'),
+    tax:   form.querySelector('input[name="tax"]'),
+    rev:   document.getElementById('rev'),
+    costs: document.getElementById('costs'),
+    net:   document.getElementById('net'),
+  };
+
+  const fmt = n => n.toLocaleString('ru-RU', {maximumFractionDigits: 0}) + ' ₽';
+
+  function recalc(){
+    const price = +els.price.value || 0;
+    const cups  = +els.cups.value  || 0;
+    const days  = +els.days.value  || 0;
+
+    const revenue = price * cups * days;
+
+    const pIngr = (+els.ingredients.value || 0) / 100;
+    const pRent = (+els.rent.value || 0) / 100;
+    const pAcq  = (+els.acq.value  || 0) / 100;
+    const pTax  = (+els.tax.value  || 0) / 100;
+
+    const totalPct = pIngr + pRent + pAcq + pTax;
+    const costs = revenue * totalPct;
+    const net   = revenue - costs;
+
+    els.rev.textContent   = revenue ? fmt(revenue) : '—';
+    els.costs.textContent = revenue ? fmt(Math.round(costs)) : '—';
+    els.net.textContent   = revenue ? fmt(Math.round(net)) : '—';
+  }
+
+  form.addEventListener('input', recalc);
+  recalc();
+})();
+
+// обработка формы заявки (без бэкенда, имитация отправки)
+(function(){
+  const form = document.getElementById('lead-form');
+  if(!form) return;
+
+  const toast = document.getElementById('lead-toast');
+
+  function showToast(msg){
+    if(toast){ toast.textContent = msg; toast.classList.add('is-show'); setTimeout(()=>toast.classList.remove('is-show'), 2400); }
+  }
+
+  form.addEventListener('submit', (e)=>{
     e.preventDefault();
-    const el = document.querySelector(tgt.dataset.target);
-    if(el){
-      document.documentElement.style.scrollBehavior = 'auto';
-      el.scrollIntoView(true);
+
+    // простая валидация
+    const name = form.elements['name'].value.trim();
+    const phone = form.elements['phone'].value.trim();
+    const agree = form.querySelector('input[type="checkbox"]').checked;
+
+    if(!name || !phone || !agree){
+      showToast('Заполните имя, телефон и согласие.');
+      return;
     }
+
+    // тут подключишь свой бэкенд/телеграм-бот/формспри — пока просто имитация
+    form.reset();
+    showToast('Заявка отправлена. Свяжемся в ближайшее время.');
+  });
+})();
+// 3D-tilt для кофе-пойнта (desktop), автоподсветка на hover
+(function(){
+  const wrap = document.querySelector('.hero__img');
+  if(!wrap) return;
+  const img = wrap.querySelector('img');
+  let raf = null;
+
+  // пропускаем на тач-устройствах
+  const isTouch = window.matchMedia('(hover:none), (pointer:coarse)').matches;
+  if(isTouch) return;
+
+  const maxTilt = 8; // градусов
+  function onMove(e){
+    const rect = wrap.getBoundingClientRect();
+    const cx = rect.left + rect.width/2;
+    const cy = rect.top + rect.height/2;
+    const dx = (e.clientX - cx) / (rect.width/2);
+    const dy = (e.clientY - cy) / (rect.height/2);
+    // ограничим
+    const ry = Math.max(-1, Math.min(1, dx)) * maxTilt;   // вращение по Y
+    const rx = Math.max(-1, Math.min(1, -dy)) * maxTilt;  // вращение по X
+    if(raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(()=>{
+      wrap.style.setProperty('--ry', ry.toFixed(2) + 'deg');
+      wrap.style.setProperty('--rx', rx.toFixed(2) + 'deg');
+    });
   }
-});
 
-// ====== VisualViewport support for mobile ======
-if (window.visualViewport){
-  const vv = window.visualViewport;
-  const setVVH = ()=> document.documentElement.style.setProperty('--vvh', vv.height + 'px');
-  vv.addEventListener('resize', setVVH);
-  vv.addEventListener('scroll', setVVH);
-  setVVH();
-}
+  function enter(){
+    wrap.classList.add('is-tilting','is-hover');
+    document.addEventListener('mousemove', onMove);
+  }
+  function leave(){
+    document.removeEventListener('mousemove', onMove);
+    wrap.classList.remove('is-tilting','is-hover');
+    wrap.style.removeProperty('--ry');
+    wrap.style.removeProperty('--rx');
+  }
 
-// ====== Start ======
-window.addEventListener('load', ()=>{
-  setArrowVisible(false); // скрыта до кода
-  runIntro();
-}, { once:true });
+  wrap.addEventListener('mouseenter', enter);
+  wrap.addEventListener('mouseleave', leave);
+})();

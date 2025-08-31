@@ -1,58 +1,543 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>txf. — One-man studio</title>
-
-  <!-- PT Mono -->
-  <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Nord Coffee</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <header class="hero" id="top">
-    <!-- Интро фразы -->
-    <div class="intro">
-      <div class="phrase" id="phraseSlot" aria-live="assertive"></div>
+  <!-- Шапка -->
+  <header class="header">
+    <div class="container header__row">
+      <div class="header__logo">
+        <img src="images/logo.png" alt="Nord Coffee" class="logo-img"/>
+      </div>
+      <button class="burger" aria-label="Открыть меню"></button>
+      <nav class="nav">
+         <a href="#contacts" class="btn">Отправить заявку</a>
+         <a href="https://wa.me/79821404149" target="_blank" rel="noopener" class="btn btn--ghost">Написать в WhatsApp</a>
+      </nav>
     </div>
-
-    <!-- Режим “кодера” -->
-    <div class="coder hidden" id="coderStage" aria-hidden="true">
-      <pre class="code" id="codeStream" aria-label="streaming colored HTML code"></pre>
-
-      <!-- Центральная надпись -->
-      <div class="brand" id="brandMark" aria-hidden="true">
-  <span class="txf">txf.</span><br class="br-desktop">
-  <span class="studio">One-man studio</span>
-</div>
-
-</div>
-
-    <!-- Стрелка вниз -->
-    <a href="#about" class="scroll-down" id="scrollDown" aria-label="Перейти к следующему блоку">↓</a>
   </header>
 
-  <!-- Следующий блок-якорь -->
-  <section id="about" class="about">
-    <h2>Познакомиться ближе</h2>
-    <p>Здесь будет следующий контент страницы. Пролистывание со стрелки приводит сюда.</p>
+  <!-- Hero -->
+  <section id="hero" class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <h1>
+          Наше оборудование полностью подготовлено для запуска —
+          вам остаётся только начать бизнес с небольшими вложениями,
+          минимальными рисками и коротким сроком окупаемости.
+        </h1>
+
+        <p class="hero__badge">
+          230 000 ₽ <span>вместо 280 000 ₽</span>
+        </p>
+
+        <div class="hero__cta">
+          <a href="#contacts" class="btn">Оставить заявку</a>
+           <a href="https://wa.me/79821404149" target="_blank" rel="noopener" class="btn btn--ghost">Написать в WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="hero__img">
+        <img src="images/coffee-point.png" alt="Кофе-поинт Nord Coffee"/>
+      </div>
+    </div>
   </section>
 
-<section id="work" class="about">
-  <h2>Работы</h2>
-  <p>Тут будут кейсы и ссылки на проекты.</p>
+
+  <!-- Почему мы -->
+<section id="why-us" class="section why">
+  <div class="container">
+    <h2 class="why__title">Почему вам следует сотрудничать именно с нами?</h2>
+    <p class="why__lead">Мы окажем полное сопровождение до первой продажи.</p>
+
+    <ul class="why__cards">
+      <li class="why__card">
+        <!-- landmark -->
+        <svg class="why__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 22h18"/>
+          <path d="M6 18V9"/>
+          <path d="M10 18V9"/>
+          <path d="M14 18V9"/>
+          <path d="M18 18V9"/>
+          <path d="M2 9l10-5 10 5z"/>
+        </svg>
+        <h3>Документы и финансы под ключ</h3>
+        <p>Зарегистрируем ИП, откроем расчётный счёт, подключим терминал безналичной оплаты.</p>
+      </li>
+
+      <li class="why__card">
+        <!-- coffee -->
+        <svg class="why__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M17 8h3a3 3 0 0 1 0 6h-3"/>
+          <path d="M3 8h14v6a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5Z"/>
+          <path d="M6 2v2"/>
+          <path d="M10 2v2"/>
+          <path d="M14 2v2"/>
+        </svg>
+        <h3>Идеальный вкус на локации</h3>
+        <p>Настроим кофе-аппарат для получения наилучшего вкуса напитков.</p>
+      </li>
+
+      <li class="why__card">
+        <!-- truck -->
+        <svg class="why__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M10 17h4V5H2v12h3"/>
+          <path d="M14 7h4l4 4v6h-3"/>
+          <circle cx="7.5" cy="17.5" r="2.5"/>
+          <circle cx="17.5" cy="17.5" r="2.5"/>
+        </svg>
+        <h3>Поможем с логистикой</h3>
+        <p>Покроем до 50% стоимости транспортной компании.</p>
+      </li>
+    </ul>
+  </div>
 </section>
 
-<section id="services" class="about">
-  <h2>Услуги</h2>
-  <p>Дизайн, тексты, сборка, запуск. One-man production.</p>
+
+<!-- Простая модель запуска бизнеса -->
+<section id="steps" class="section steps">
+  <div class="container">
+    <h2 class="steps__title">Простая модель запуска бизнеса</h2>
+
+    <ul class="steps__grid">
+      <li class="steps__item">
+        <!-- заявка -->
+        <svg class="steps__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20h9" />
+          <path d="M12 4H3" />
+          <path d="M5 20V4" />
+          <path d="M19 20V10" />
+          <path d="M15 14h-4" />
+        </svg>
+        <h3>Оставляете заявку</h3>
+        <p>Вы оставляете заявку на сайте</p>
+      </li>
+
+      <li class="steps__item">
+        <!-- консультация -->
+        <svg class="steps__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/>
+        </svg>
+        <h3>Консультация</h3>
+        <p>Мы связываемся для подробной консультации</p>
+      </li>
+
+      <li class="steps__item">
+        <!-- договор -->
+        <svg class="steps__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <path d="M14 2v6h6"/>
+          <path d="M16 13H8"/>
+          <path d="M16 17H8"/>
+          <path d="M10 9H8"/>
+        </svg>
+        <h3>Договор и отправка</h3>
+        <p>Заключаем договор и совершаем отправку всего необходимого</p>
+      </li>
+
+      <li class="steps__item">
+        <!-- установка -->
+        <svg class="steps__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33
+                   1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51
+                   1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06
+                   a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09
+                   a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06
+                   a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9
+                   a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09
+                   a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06
+                   a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9
+                   c0 .69.28 1.35.77 1.83.48.48 1.14.77 1.83.77H21a2 2 0 0 1 0 4h-.09
+                   a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        <h3>Установка</h3>
+        <p>Вы получаете оборудование и устанавливаете на своей локации</p>
+      </li>
+    </ul>
+  </div>
 </section>
 
-<section id="contacts" class="about">
-  <h2>Контакты</h2>
-  <p>Написать: @timxfey (Telegram) • Email позже</p>
+
+
+<!-- Идеальные локации для установки кофе-поинта -->
+<section id="locations" class="section loc">
+  <div class="container">
+    <h2 class="loc__title">Идеальные локации для установки кофе-поинта</h2>
+
+    <ul class="loc__cards">
+      <li class="loc__card">
+        <!-- Бизнес-центры -->
+        <svg class="loc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="8" width="6" height="12" rx="1"></rect>
+          <rect x="11" y="4" width="6" height="16" rx="1"></rect>
+          <path d="M2 20h20"></path>
+        </svg>
+        <h3>Бизнес-центры</h3>
+        <p>Стабильный трафик, кофе рядом с работой.</p>
+      </li>
+
+      <li class="loc__card">
+        <!-- Клиники и фитнес -->
+        <svg class="loc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          <path d="M12 8v8M8 12h8"></path>
+        </svg>
+        <h3>Клиники и фитнес</h3>
+        <p>Ожидание = время для кофе, высокий спрос.</p>
+      </li>
+
+      <li class="loc__card">
+        <!-- Вузы и колледжи -->
+        <svg class="loc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="12,5 3,10 12,15 21,10 12,5"></polygon>
+          <path d="M7 12v4c0 1.1 2.24 2 5 2s5-.9 5-2v-4"></path>
+        </svg>
+        <h3>Вузы и колледжи</h3>
+        <p>Студенты ценят доступный кофе «сейчас».</p>
+      </li>
+
+      <li class="loc__card">
+        <!-- ТЦ и маркеты -->
+        <svg class="loc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 5h2l2 10h9l2-7H7"></path>
+          <circle cx="9" cy="19" r="1.5"></circle>
+          <circle cx="17" cy="19" r="1.5"></circle>
+        </svg>
+        <h3>ТЦ и маркеты</h3>
+        <p>Импульсные покупки и хороший поток.</p>
+      </li>
+    </ul>
+  </div>
 </section>
+
+<!-- Подсчет прибыли -->
+<section id="profit" class="section profit">
+  <div class="container">
+    <h2 class="profit__title">
+      <!-- line-chart -->
+      <svg class="profit__title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 3v18h18"/>
+        <path d="M19 9l-5 5-3-3-4 4"/>
+      </svg>
+      Подсчёт прибыли
+    </h2>
+
+<p class="profit__lead">
+  Продавая <strong>11</strong> напитков в день по <strong>150 ₽</strong>, 
+  при типовых расходах (ингредиенты 30%, аренда 5%, эквайринг 2%, налоги 4%) 
+  чистая прибыль составит около <strong>30&nbsp;690 ₽</strong> в месяц.
+</p>
+
+    <form class="calc" id="profit-calc" onsubmit="return false;">
+      <div class="calc__grid">
+        <div class="calc__group">
+          <label>
+            <!-- circle-dollar-sign -->
+            <svg class="calc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M16 12a4 4 0 0 1-4 4H9v-2h3a2 2 0 1 0 0-4H10a2 2 0 1 1 0-4h3v2h-3a2 2 0 1 0 0 4h2a4 4 0 0 1 4 4z"></path>
+            </svg>
+            Цена напитка, ₽
+          </label>
+          <input type="number" name="price" min="50" step="10" value="150" inputmode="numeric">
+        </div>
+
+        <div class="calc__group">
+          <label>
+            <!-- coffee -->
+            <svg class="calc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 8h3a3 3 0 0 1 0 6h-3"/>
+              <path d="M3 8h14v6a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5Z"/>
+              <path d="M6 2v2M10 2v2M14 2v2"/>
+            </svg>
+            Чашек в день, шт
+          </label>
+          <input type="number" name="cups" min="1" step="1" value="11" inputmode="numeric">
+        </div>
+
+        <div class="calc__group">
+          <label>
+            <!-- calendar -->
+            <svg class="calc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <path d="M16 2v4M8 2v4M3 10h18"/>
+            </svg>
+            Дней в месяце
+          </label>
+          <input type="number" name="days" min="1" max="31" step="1" value="30" inputmode="numeric">
+        </div>
+
+        <div class="calc__group">
+          <label>
+            <!-- percent -->
+            <svg class="calc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="5" x2="5" y2="19"/>
+              <circle cx="6.5" cy="6.5" r="2.5"/>
+              <circle cx="17.5" cy="17.5" r="2.5"/>
+            </svg>
+            Ингредиенты, %
+          </label>
+          <input type="number" name="ingredients" min="0" max="100" step="1" value="30" inputmode="numeric">
+        </div>
+
+        <div class="calc__group">
+          <label>
+            <svg class="calc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="5" x2="5" y2="19"/>
+              <circle cx="6.5" cy="6.5" r="2.5"/>
+              <circle cx="17.5" cy="17.5" r="2.5"/>
+            </svg>
+            Аренда, %
+          </label>
+          <input type="number" name="rent" min="0" max="100" step="1" value="5" inputmode="numeric">
+        </div>
+
+        <div class="calc__group">
+          <label>
+            <svg class="calc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="5" x2="5" y2="19"/>
+              <circle cx="6.5" cy="6.5" r="2.5"/>
+              <circle cx="17.5" cy="17.5" r="2.5"/>
+            </svg>
+            Эквайринг, %
+          </label>
+          <input type="number" name="acq" min="0" max="100" step="1" value="2" inputmode="numeric">
+        </div>
+
+        <div class="calc__group">
+          <label>
+            <svg class="calc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="5" x2="5" y2="19"/>
+              <circle cx="6.5" cy="6.5" r="2.5"/>
+              <circle cx="17.5" cy="17.5" r="2.5"/>
+            </svg>
+            Налоги, %
+          </label>
+          <input type="number" name="tax" min="0" max="100" step="1" value="4" inputmode="numeric">
+        </div>
+      </div>
+
+      <div class="calc__result" aria-live="polite">
+        <div>
+          <span class="calc__result-label">
+            <!-- receipt -->
+            <svg viewBox="0 0 24 24" class="calc__result-icon" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l1.5 1L15 2l1.5 1L18 2l2 2v16l-2-1-1.5 1L15 19l-1.5 1L12 19l-1.5 1L9 19l-1.5 1L6 19l-2 1V4l2-2 1.5 1L9 2l1.5 1L12 2z"/>
+              <path d="M8 13h8M8 9h8"/>
+            </svg>
+            Выручка/мес
+          </span>
+          <strong id="rev">—</strong>
+        </div>
+        <div>
+          <span class="calc__result-label">
+            <!-- pie-chart -->
+            <svg viewBox="0 0 24 24" class="calc__result-icon" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21.21 15.89A10 10 0 1 1 12 2v10l9.21 3.89z"/>
+            </svg>
+            Сумма расходов
+          </span>
+          <strong id="costs">—</strong>
+        </div>
+        <div class="calc__net">
+          <span class="calc__result-label">
+            <!-- wallet -->
+            <svg viewBox="0 0 24 24" class="calc__result-icon" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 7H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+              <path d="M16 11h4"/>
+            </svg>
+            Чистая прибыль/мес
+          </span>
+          <strong id="net">—</strong>
+        </div>
+      </div>
+
+      <p class="calc__note">Расходы указаны как доля от выручки. Фактические условия по аренде и налогам могут отличаться.</p>
+    </form>
+  </div>
+</section>
+
+<!--ЧЗВ-->
+<section id="faq" class="section faq">
+  <div class="container">
+    <h2 class="faq__title">Частые вопросы</h2>
+
+    <details class="faq__item">
+      <summary>
+        <svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 8v4"/>
+          <path d="M12 16h.01"/>
+        </svg>
+        Есть ли доставка по России?
+      </summary>
+      <div class="faq__a">
+        Да. Отправляем из Сургута по всей стране, поможем с логистикой и подключением. Покрываем до 50% стоимости транспортной компании.
+      </div>
+    </details>
+
+    <details class="faq__item">
+      <summary>
+        <svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 8v4"/>
+          <path d="M12 16h.01"/>
+        </svg>
+        Сколько нужно вложить на старте?
+      </summary>
+      <div class="faq__a">
+        Зависит от модели и локации. На созвоне подберём оптимальный бюджет и окупаемость.
+      </div>
+    </details>
+
+    <details class="faq__item">
+      <summary>
+        <svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 8v4"/>
+          <path d="M12 16h.01"/>
+        </svg>
+        Кто обслуживает автомат?
+      </summary>
+      <div class="faq__a">
+        Обучаем вас или вашего сотрудника. Даём регламенты, помогаем выстроить сервис.
+      </div>
+    </details>
+
+    <details class="faq__item">
+      <summary>
+        <svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 8v4"/>
+          <path d="M12 16h.01"/>
+        </svg>
+        Как быстро запустится бизнес после оплаты?
+      </summary>
+      <div class="faq__a">
+        Обычно подготовка и отправка занимают до 14 дней. Доставка зависит от региона.
+      </div>
+    </details>
+
+    <details class="faq__item">
+      <summary>
+        <svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 8v4"/>
+          <path d="M12 16h.01"/>
+        </svg>
+        Какие документы нужны для начала работы?
+      </summary>
+      <div class="faq__a">
+        Достаточно регистрации ИП или ООО. Поможем с открытием расчётного счёта и подключением эквайринга.
+      </div>
+    </details>
+
+    <details class="faq__item">
+      <summary>
+        <svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 8v4"/>
+          <path d="M12 16h.01"/>
+        </svg>
+        Какая гарантия на оборудование?
+      </summary>
+      <div class="faq__a">
+        Гарантия — 1 год. Есть постгарантийное сопровождение и поддержка по рецептам и настройке.
+      </div>
+    </details>
+  </div>
+</section>
+
+<!--ОС-->
+<section id="contacts" class="section lead">
+  <div class="container">
+    <h2 class="lead__title">Оставить заявку</h2>
+    <p class="lead__lead">Оставьте контакты — вернёмся с расчётом и ответим на вопросы.</p>
+
+    <form id="lead-form" class="lead__form" novalidate>
+      <div class="lead__group">
+        <label>Ваше имя</label>
+        <input type="text" name="name" placeholder="Иван" required autocomplete="name">
+      </div>
+
+      <div class="lead__group">
+        <label>Телефон</label>
+        <input type="tel" name="phone" placeholder="+7 900 000-00-00" required inputmode="tel" autocomplete="tel">
+      </div>
+
+      <div class="lead__group lead__group--full">
+        <label>Комментарий (необязательно)</label>
+        <textarea name="msg" rows="3" placeholder="Город, локация, вопросы…"></textarea>
+      </div>
+
+      <div class="lead__actions">
+        <button type="submit" class="btn">Отправить заявку</button>
+        <a class="btn btn--ghost" href="https://wa.me/79821404149" target="_blank" rel="noopener">Написать в WhatsApp</a>
+      </div>
+
+      <label class="lead__agree">
+        <input type="checkbox" required>
+        <span>Согласен(а) на обработку персональных данных и <a href="docs/privacy.html" target="_blank">политику конфиденциальности</a></span>
+      </label>
+    </form>
+
+    <!-- Сообщение об успехе -->
+    <div id="lead-toast" class="toast" role="status" aria-live="polite">Заявка отправлена. Свяжемся в ближайшее время.</div>
+  </div>
+</section>
+
   <script src="script.js"></script>
 </body>
+<footer class="footer">
+  <div class="container footer__row">
+    <p>© 2025 Nord Coffee</p>
+    <p><a href="tel:+79821404149">+7 982 140-41-49</a></p>
+
+    <a href="docs/privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a>
+
+    <p class="disclaimer">
+      Информация, размещенная на сайте, носит исключительно информационно-рекламный характер
+      и не является офертой или публичной офертой в соответствии со статьей 435 и пунктом 2
+      статьи 437 Гражданского кодекса Российской Федерации.
+    </p>
+
+    <p class="powered">
+      Powered by <a href="https://t.me/timxfey" target="_blank" rel="noopener">@timxfey</a>
+    </p>
+  </div>
+</footer>
+
 </html>
