@@ -14,7 +14,7 @@ const deviceMem = navigator.deviceMemory || 4; // грубая эвристик�
 const TYPE_DELAY = 1;  // задержка 1 мс между порциями
 const STEP = 6;        // сразу печатаем по 6 символов
 
-// Цветной HTML-код (размеченный span’ами для подсветки) + меню
+// Цветной HTML-код (размеченный span'ами для подсветки) + меню
 const COLORED_HTML = [
   `<span class="t-comm">&lt;!-- txf. — One-man studio: menu --&gt;</span>`,
   `<span class="t-angle">&lt;</span><span class="t-tag">!DOCTYPE</span> <span class="t-attr">html</span><span class="t-angle">&gt;</span>`,
@@ -27,10 +27,10 @@ const COLORED_HTML = [
   `    <span class="t-angle">&lt;</span><span class="t-tag">header</span> <span class="t-attr">class</span><span class="t-punc">=</span><span class="t-str">"hero"</span><span class="t-angle">&gt;</span>`,
   `      <span class="t-angle">&lt;</span><span class="t-tag">nav</span><span class="t-angle">&gt;</span>`,
   `        <span class="t-angle">&lt;</span><span class="t-tag">ul</span><span class="t-angle">&gt;</span>`,
-  `          <span class="t-angle">&lt;</span><span class="t-tag">li</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span><span class="t-punc">=</span><span class="t-str code-link" data-target="#about" role="link" tabindex="0">"#Познакомиться ближе"</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">a</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">li</span><span class="t-angle">&gt;</span>`,
-  `          <span class="t-angle">&lt;</span><span class="t-tag">li</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span><span class="t-punc">=</span><span class="t-str code-link" data-target="#work" role="link" tabindex="0">"#Работы"</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">a</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">li</span><span class="t-angle">&gt;</span>`,
-  `          <span class="t-angle">&lt;</span><span class="t-tag">li</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span><span class="t-punc">=</span><span class="t-str code-link" data-target="#services" role="link" tabindex="0">"#Услуги"</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">a</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">li</span><span class="t-angle">&gt;</span>`,
-  `          <span class="t-angle">&lt;</span><span class="t-tag">li</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span><span class="t-punc">=</span><span class="t-str code-link" data-target="#contacts" role="link" tabindex="0">"#Контакты"</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">a</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">li</span><span class="t-angle">&gt;</span>`,
+  `          <span class="t-angle">&lt;</span><span class="t-tag">li</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span><span class="t-punc">=</span><span class="t-str code-link" data-target="#about" role="button" tabindex="0">"#Познакомиться ближе"</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">a</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">li</span><span class="t-angle">&gt;</span>`,
+  `          <span class="t-angle">&lt;</span><span class="t-tag">li</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span><span class="t-punc">=</span><span class="t-str code-link" data-target="#work" role="button" tabindex="0">"#Работы"</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">a</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">li</span><span class="t-angle">&gt;</span>`,
+  `          <span class="t-angle">&lt;</span><span class="t-tag">li</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span><span class="t-punc">=</span><span class="t-str code-link" data-target="#services" role="button" tabindex="0">"#Услуги"</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">a</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">li</span><span class="t-angle">&gt;</span>`,
+  `          <span class="t-angle">&lt;</span><span class="t-tag">li</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span><span class="t-punc">=</span><span class="t-str code-link" data-target="#contacts" role="button" tabindex="0">"#Контакты"</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">a</span><span class="t-angle">&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">li</span><span class="t-angle">&gt;</span>`,
   `        <span class="t-angle">&lt;/</span><span class="t-tag">ul</span><span class="t-angle">&gt;</span>`,
   `      <span class="t-angle">&lt;/</span><span class="t-tag">nav</span><span class="t-angle">&gt;</span>`,
   `      <span class="t-angle">&lt;</span><span class="t-tag">h1</span><span class="t-angle">&gt;</span><span class="t-comm">&lt;!-- focus on the brand --&gt;</span><span class="t-angle">&lt;/</span><span class="t-tag">h1</span><span class="t-angle">&gt;</span>`,
@@ -150,28 +150,64 @@ if (scrollDown){
   });
 }
 
-// ====== In-code menu clicks ======
-codeStream.addEventListener('click', (e)=>{
-  const link = e.target.closest('.code-link');
-  if(!link) return;
-  const sel = link.dataset.target;
-  const el = document.querySelector(sel);
-  if(el){
+// ====== Функция навигации ======
+function navigateToSection(selector) {
+  const el = document.querySelector(selector);
+  if (el) {
     document.documentElement.style.scrollBehavior = 'auto';
-    el.scrollIntoView(true);
+    el.scrollIntoView({ 
+      behavior: 'auto', 
+      block: 'start' 
+    });
   }
-});
-// клавиатура (Enter/Space)
-codeStream.addEventListener('keydown', (e)=>{
+}
+
+// ====== In-code menu clicks - УЛУЧШЕННАЯ ВЕРСИЯ ======
+// Используем как click, так и touchend для максимальной совместимости
+function handleMenuClick(e) {
+  // Предотвращаем всплытие события
+  e.preventDefault();
+  e.stopPropagation();
+  
+  const link = e.target.closest('.code-link');
+  if (!link) return;
+  
+  const sel = link.dataset.target;
+  if (sel) {
+    navigateToSection(sel);
+  }
+}
+
+// Добавляем обработчики событий для мобильных устройств
+codeStream.addEventListener('click', handleMenuClick, { passive: false });
+codeStream.addEventListener('touchend', handleMenuClick, { passive: false });
+
+// Также добавляем touchstart для визуальной обратной связи
+codeStream.addEventListener('touchstart', (e) => {
+  const link = e.target.closest('.code-link');
+  if (link) {
+    link.style.transform = 'scale(0.95)';
+    link.style.transition = 'transform 0.1s ease';
+  }
+}, { passive: true });
+
+codeStream.addEventListener('touchend', (e) => {
+  const link = e.target.closest('.code-link');
+  if (link) {
+    setTimeout(() => {
+      link.style.transform = '';
+      link.style.transition = '';
+    }, 150);
+  }
+}, { passive: true });
+
+// клавиатура (Enter/Space) - оставляем как есть
+codeStream.addEventListener('keydown', (e) => {
   const tgt = e.target.closest('.code-link');
-  if(!tgt) return;
-  if(e.key === 'Enter' || e.key === ' '){
+  if (!tgt) return;
+  if (e.key === 'Enter' || e.key === ' ') {
     e.preventDefault();
-    const el = document.querySelector(tgt.dataset.target);
-    if(el){
-      document.documentElement.style.scrollBehavior = 'auto';
-      el.scrollIntoView(true);
-    }
+    navigateToSection(tgt.dataset.target);
   }
 });
 

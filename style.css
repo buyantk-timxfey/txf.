@@ -234,3 +234,59 @@ body{
   80%  { transform: translate(-1px,0) skewX(.6deg); }
   100% { transform: translate(0,0) skewX(0deg); }
 }
+/* Добавьте эти стили к вашему существующему CSS */
+
+/* Улучшения для мобильного меню */
+.code-link {
+  text-decoration: underline dotted;
+  cursor: pointer;
+  padding: 4px 2px; /* Увеличили padding для лучшего touch target */
+  border-radius: 4px;
+  display: inline-block;
+  min-height: 24px; /* Минимальная высота для touch */
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+  touch-action: manipulation; /* Предотвращает двойное касание для зума */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.code-link:hover,
+.code-link:focus,
+.code-link:active {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  text-decoration: underline;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Стили для touch feedback на мобильных */
+@media (hover: none) and (pointer: coarse) {
+  .code-link {
+    padding: 6px 4px; /* Еще больше padding на тач-устройствах */
+    min-height: 32px; /* Больше минимальная высота */
+  }
+  
+  .code-link:active {
+    transform: scale(0.95);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Убираем выделение текста при касании */
+.code {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Разрешаем выделение только для интерактивных элементов */
+}
+
+.code-link {
+  -webkit-user-select: auto;
+  -khtml-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+}
