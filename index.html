@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>txf. — One-man studio</title>
+
+  <!-- PT Mono -->
+  <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero" id="top">
+    <!-- Интро фразы -->
+    <div class="intro">
+      <div class="phrase" id="phraseSlot" aria-live="assertive"></div>
+    </div>
+
+    <!-- Режим “кодера” -->
+    <div class="coder hidden" id="coderStage" aria-hidden="true">
+      <pre class="code" id="codeStream" aria-label="streaming colored HTML code"></pre>
+
+      <!-- Центральная надпись -->
+      <div class="brand" id="brandMark" aria-hidden="true">
+  <span class="txf">txf.</span><br class="br-desktop">
+  <span class="studio">One-man studio</span>
+</div>
+
+</div>
+
+    <!-- Стрелка вниз -->
+    <a href="#about" class="scroll-down" id="scrollDown" aria-label="Перейти к следующему блоку">↓</a>
+  </header>
+
+  <!-- Следующий блок-якорь -->
+  <section id="about" class="about">
+    <h2>Познакомиться ближе</h2>
+    <p>Здесь будет следующий контент страницы. Пролистывание со стрелки приводит сюда.</p>
+  </section>
+
+<section id="work" class="about">
+  <h2>Работы</h2>
+  <p>Тут будут кейсы и ссылки на проекты.</p>
+</section>
+
+<section id="services" class="about">
+  <h2>Услуги</h2>
+  <p>Дизайн, тексты, сборка, запуск. One-man production.</p>
+</section>
+
+<section id="contacts" class="about">
+  <h2>Контакты</h2>
+  <p>Написать: @timxfey (Telegram) • Email позже</p>
+</section>
+  <script src="script.js"></script>
+</body>
+</html>
